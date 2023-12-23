@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class RealImage implements MyImage {
-    private JFrame frame;
+    private final JFrame frame;
 
     public RealImage(String filename) {
         frame = new JFrame();

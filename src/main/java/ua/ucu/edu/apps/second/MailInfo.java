@@ -1,7 +1,7 @@
 package ua.ucu.edu.apps.second;
 
 import lombok.Getter;
-import ua.ucu.edu.apps.second.MailCodes.MailCode;
+import ua.ucu.edu.apps.second.codes.MailCode;
 
 @Getter
 public class MailInfo {

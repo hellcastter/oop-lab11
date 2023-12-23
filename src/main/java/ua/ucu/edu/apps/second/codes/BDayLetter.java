@@ -1,4 +1,4 @@
-package ua.ucu.edu.apps.second.MailCodes;
+package ua.ucu.edu.apps.second.codes;
 
 import lombok.Getter;
 

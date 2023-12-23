@@ -13,43 +13,43 @@ import org.json.JSONObject;
 public class MailSender {
     private MailjetClient client;
 
-    private String api_key;
-    private String api_secret;
+    private final String apiKey;
+    private final String apiSecret;
 
-    public MailSender(MailjetClient client, String api_key, String api_secret) {
+    public MailSender(MailjetClient client, String apiKey, String api_secret) {
         this.client = client;
-        this.api_key = api_key;
-        this.api_secret = api_secret;
+        this.apiKey = apiKey;
+        this.apiSecret = api_secret;
     }
 
     public void sendMail(MailInfo mailInfo) throws MailjetSocketTimeoutException, MailjetException {
         MailjetRequest request;
         MailjetResponse response;
 
-        client = new MailjetClient(api_key, api_secret, new ClientOptions("v3.1"));
+        client = new MailjetClient(apiKey, apiSecret, new ClientOptions("v3.1"));
         request = new MailjetRequest(Emailv31.resource)
-                .property(
-                        Emailv31.MESSAGES,
-                        new JSONArray().put(
+            .property(
+                Emailv31.MESSAGES,
+                new JSONArray().put(
+                    new JSONObject()
+                        .put(
+                            Emailv31.Message.FROM,
+                            new JSONObject()
+                                .put("Email", "muryn.pn@ucu.edu.ua")
+                                .put("Name", "Victor")
+                        )
+                        .put(
+                            Emailv31.Message.TO,
+                            new JSONArray().put(
                                 new JSONObject()
-                                        .put(
-                                                Emailv31.Message.FROM,
-                                                new JSONObject()
-                                                        .put("Email", "muryn.pn@ucu.edu.ua")
-                                                        .put("Name", "Victor")
-                                        )
-                                        .put(
-                                                Emailv31.Message.TO,
-                                                new JSONArray().put(
-                                                        new JSONObject()
-                                                                .put("Email", mailInfo.getClient().getEmail())
-                                                                .put("Name", mailInfo.getClient().getName())
-                                                )
-                                        )
-                                        .put(Emailv31.Message.SUBJECT, mailInfo.getMailCode().getMailSubject())
-                                        .put(Emailv31.Message.TEXTPART, mailInfo.getMailCode().getMailText())
-                                        .put(Emailv31.Message.HTMLPART, mailInfo.getMailCode().getMailHTML())
-                                        .put(Emailv31.Message.CUSTOMID, "AppGettingStartedTest")));
+                                    .put("Email", mailInfo.getClient().getEmail())
+                                    .put("Name", mailInfo.getClient().getName())
+                            )
+                        )
+                        .put(Emailv31.Message.SUBJECT, mailInfo.getMailCode().getMailSubject())
+                        .put(Emailv31.Message.TEXTPART, mailInfo.getMailCode().getMailText())
+                        .put(Emailv31.Message.HTMLPART, mailInfo.getMailCode().getMailHTML())
+                        .put(Emailv31.Message.CUSTOMID, "AppGettingStartedTest")));
 
         response = client.post(request);
         System.out.println(response.getStatus());

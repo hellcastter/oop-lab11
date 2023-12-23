@@ -1,5 +1,8 @@
 package ua.ucu.edu.apps.second;
 
+import com.mailjet.client.errors.MailjetException;
+import com.mailjet.client.errors.MailjetSocketTimeoutException;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -10,7 +13,7 @@ public class MailBox {
         this.infos = new ArrayList<>();
     }
 
-    public MailBox (List<MailInfo> infos) {
+    public MailBox(List<MailInfo> infos) {
         this.infos = infos;
     }
 
@@ -18,13 +21,9 @@ public class MailBox {
         infos.add(mailInfo);
     }
 
-    public void sendAll(MailSender sender) {
+    public void sendAll(MailSender sender) throws MailjetSocketTimeoutException, MailjetException {
         for (MailInfo info : infos) {
-            try {
-                sender.sendMail(info);
-            } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());
-            }
+            sender.sendMail(info);
         }
     }
 }

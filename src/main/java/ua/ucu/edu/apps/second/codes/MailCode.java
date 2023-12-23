@@ -1,4 +1,4 @@
-package ua.ucu.edu.apps.second.MailCodes;
+package ua.ucu.edu.apps.second.codes;
 
 public interface MailCode {
     String getMailSubject();

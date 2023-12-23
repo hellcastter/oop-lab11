@@ -7,10 +7,6 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
-enum Gender {
-    MALE, FEMALE
-}
-
 @AllArgsConstructor
 @SuperBuilder
 @ToString

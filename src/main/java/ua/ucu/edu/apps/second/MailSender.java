@@ -16,10 +16,10 @@ public class MailSender {
     private final String apiKey;
     private final String apiSecret;
 
-    public MailSender(MailjetClient client, String apiKey, String api_secret) {
+    public MailSender(MailjetClient client, String apiKey, String apiSecret) {
         this.client = client;
         this.apiKey = apiKey;
-        this.apiSecret = api_secret;
+        this.apiSecret = apiSecret;
     }
 
     public void sendMail(MailInfo mailInfo) throws MailjetSocketTimeoutException, MailjetException {
